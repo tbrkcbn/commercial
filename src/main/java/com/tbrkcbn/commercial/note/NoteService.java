@@ -34,11 +34,11 @@ public class NoteService {
         }
         noteRepository.save(note);
     }
-    public void deleteNoteByTitle(String title){
-        Optional<Note> noteByTitle = noteRepository.findNoteByTitle(title);
-        if (noteByTitle.isPresent()){
-            noteRepository.delete(noteByTitle);
+    public void deleteNoteById(Long id){
+        boolean exists = noteRepository.existsById(id);
+        if (!exists){
+            throw new IllegalStateException("note with id:"+id+" does not exists in db!");
         }
-        throw new IllegalStateException("There is no such a note with this title");
+        noteRepository.deleteById(id);
     }
 }

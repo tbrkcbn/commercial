@@ -19,6 +19,8 @@ public class NoteController {
     @CrossOrigin
     @GetMapping
     public List<Note> getNotes(){
+        System.out.println("print!");
+
         return noteService.getNotes();
     }
 
@@ -26,12 +28,15 @@ public class NoteController {
     @CrossOrigin
     @PostMapping
     public void registerNewNode(@RequestBody Note note){
+        System.out.println("Save!");
         noteService.saveNote(note);
     }
 
     @CrossOrigin
-    @DeleteMapping
-    public void removeNote(@RequestBody String title){
-        noteService.deleteNoteByTitle(title);
+    @DeleteMapping(path = "{noteId}")
+    public void removeNote(@PathVariable("noteId") Long id){
+        System.out.println("Gotcha!");
+
+        noteService.deleteNoteById(id);
     }
 }
