@@ -19,24 +19,24 @@ public class NoteController {
     @CrossOrigin
     @GetMapping
     public List<Note> getNotes(){
-        System.out.println("print!");
-
         return noteService.getNotes();
     }
-
 
     @CrossOrigin
     @PostMapping
     public void registerNewNode(@RequestBody Note note){
-        System.out.println("Save!");
         noteService.saveNote(note);
     }
 
     @CrossOrigin
     @DeleteMapping(path = "{noteId}")
     public void removeNote(@PathVariable("noteId") Long id){
-        System.out.println("Gotcha!");
-
         noteService.deleteNoteById(id);
+    }
+
+    @CrossOrigin
+    @PutMapping
+    public void updateNote(@RequestBody UpdateNoteComponent updateNoteComponent){
+        noteService.updateNoteById(updateNoteComponent.getId(), updateNoteComponent.getNote());
     }
 }

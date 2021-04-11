@@ -41,4 +41,8 @@ public class NoteService {
         }
         noteRepository.deleteById(id);
     }
+
+    public void updateNoteById(Long id, String updatedNote){
+        System.out.println("Başardın");
+    }
 }
